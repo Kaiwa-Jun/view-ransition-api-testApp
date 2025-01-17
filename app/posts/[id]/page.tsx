@@ -3,14 +3,12 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 
-export default function PostDetail({ params }: { params: { id: string } }) {
-  const post = posts.find((p) => p.id === Number(params.id));
-  if (!post) {
-    notFound();
-  }
-
+function PostDetail({ heading, post }: { heading: string; post: any }) {
   return (
     <main className="max-w-5xl mx-auto p-6">
+      <h2 className="text-2xl font-bold mb-4">
+        {heading}：{post.title}
+      </h2>
       <Card>
         <Image
           src={post.imageUrl}
@@ -29,4 +27,13 @@ export default function PostDetail({ params }: { params: { id: string } }) {
       </Card>
     </main>
   );
+}
+
+export default function PostDetailPage({ params }: { params: { id: string } }) {
+  const post = posts.find((p) => p.id === Number(params.id));
+  if (!post) {
+    notFound();
+  }
+
+  return post ? <PostDetail heading="投稿詳細" post={post} /> : null;
 }
