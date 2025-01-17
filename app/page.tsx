@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { posts } from "@/lib/posts";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -11,10 +12,12 @@ export default function Home() {
             key={post.id}
             className="transition-transform transform hover:scale-105 hover:bg-gray-100 w-full"
           >
-            <img
+            <Image
               src={post.imageUrl}
               alt={post.title}
               className="w-full h-32 object-cover"
+              width={250}
+              height={150}
             />
             <div className="p-4">
               <CardHeader>
